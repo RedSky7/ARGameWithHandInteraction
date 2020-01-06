@@ -1,0 +1,51 @@
+{
+
+  materials: [
+    {
+      name: 'box',
+      parameters: [
+        {
+          baseColor: 'box',
+        },
+        {
+          metallic: 0,
+        },
+        {
+          roughness: 1,
+        },
+        {
+           normalMap: 'box',
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+  ],
+     samplers: [
+        {
+           file: "sampledata/models/box.jpg",
+           name: "box",
+            injections: [
+                  {usage: "Normal",},
+                ],
+
+        },
+     ],
+  model: {
+    attributes: [
+      'Position',
+      'TexCoord',
+      'Orientation',
+      'BoneIndices',
+      'BoneWeights',
+    ],
+    collision: {},
+    file: 'sampledata/models/box.fbx',
+    name: 'box',
+    recenter: 'root',
+    scale: 0.2,
+  },
+  version: '0.54:2',
+}
