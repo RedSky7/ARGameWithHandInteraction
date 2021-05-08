@@ -4,7 +4,7 @@
          name: "unlit_material",
          parameters: [
             {
-               baseColor: "andy",
+               baseColor: "red_andy",
             },
             {
                baseColorTint: [
@@ -33,8 +33,8 @@
          "TexCoord",
          "Orientation",
       ],
-      file: "sampledata/models/andy.obj",
-      name: "andy",
+      file: "sampledata/models/red_andy.obj",
+      name: "red_andy",
       recenter: "root",
       suggested_collision: {
          center: {
@@ -53,7 +53,7 @@
    samplers: [
       {
          file: "sampledata/models/red_andy.png",
-         name: "andy",
+         name: "red_andy",
          pipeline_name: "red_andy.png",
       },
    ],

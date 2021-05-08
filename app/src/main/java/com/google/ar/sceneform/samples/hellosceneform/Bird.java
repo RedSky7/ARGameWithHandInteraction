@@ -1,7 +1,5 @@
 package com.google.ar.sceneform.samples.hellosceneform;
 
-import android.util.Log;
-
 import com.google.ar.core.Pose;
 import com.google.ar.sceneform.ArSceneView;
 import com.google.ar.sceneform.FrameTime;
@@ -9,11 +7,12 @@ import com.google.ar.sceneform.Node;
 import com.google.ar.sceneform.math.Quaternion;
 import com.google.ar.sceneform.math.Vector3;
 
+import timber.log.Timber;
+
 import static com.google.ar.sceneform.samples.hellosceneform.HelloSceneformActivity.xRatio;
 import static com.google.ar.sceneform.samples.hellosceneform.HelloSceneformActivity.yRatio;
 
 public class Bird extends Node {
-    private static final String TAG = Bird.class.getSimpleName();
 
     private static final float GRAVITY = 1f;
 
@@ -30,14 +29,12 @@ public class Bird extends Node {
     }
 
     public void setVelocity(Vector3 velocity) {
-        if(velocity != null) {
+        if (velocity != null) {
             timeOfShoot = System.currentTimeMillis();
-        }
-        else {
+        } else {
             timeOfShoot = 0;
             HelloSceneformActivity.canShoot = true;
         }
-
         this.velocity = velocity;
     }
 
@@ -47,13 +44,11 @@ public class Bird extends Node {
 
     @Override
     public void onUpdate(FrameTime frameTime) {
-
-        if(System.currentTimeMillis() - timeOfShoot > 1200) {
+        if (System.currentTimeMillis() - timeOfShoot > 1200) {
             setVelocity(null);
         }
 
-
-        if(velocity == null) {
+        if (velocity == null) {
             Pose pose = getArSceneView().getArFrame().getCamera().getPose();
 
             Pose poseForward = pose.compose(Pose.makeTranslation(0.2f, 0f, -1f));
@@ -80,23 +75,18 @@ public class Bird extends Node {
             return;
         }
 
-
-
-
-
-
         // Typically, getScene() will never ret
         // urn null because onUpdate() is only called when the node
         // is in the scene.
         // However, if onUpdate is called explicitly or if the node is removed from the scene on a
         // different thread during onUpdate, then getScene may be null.
-        Log.d("Bird", "velocity = " + velocity);
+        Timber.d("velocity = %s", velocity);
 
         //setWorldPosition(new Vector3(getWorldPosition().x + velocity.x, getWorldPosition().y + velocity.y, getWorldPosition().z + velocity.z))
         velocity.y -= GRAVITY;
         velocity = velocity.scaled(frameTime.getDeltaSeconds());
         setWorldPosition(new Vector3(getWorldPosition().x + velocity.x, getWorldPosition().y + velocity.y, getWorldPosition().z + velocity.z));
         velocity = velocity.scaled(1 / frameTime.getDeltaSeconds());
-        Log.d("Bird", "localPosition = " + getLocalPosition());
+        Timber.d("localPosition = %s", getLocalPosition());
     }
 }

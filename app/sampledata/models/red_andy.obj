@@ -1,7 +1,7 @@
 # This file uses centimeters as units for non-parametric coordinates.
 # Blender v2.78 (sub 0) OBJ File: ''
 # www.blender.org
-mtllib andy.mtl
+mtllib red_andy.mtl
 g default
 v 0.036531 5.203676 -0.001768
 v 0.035000 5.204560 -0.002500
